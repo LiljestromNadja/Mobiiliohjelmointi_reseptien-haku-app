@@ -5,14 +5,18 @@ export default function App() {
   const [keyword, setKeyword] = useState('');
   const [recipes, setRecipes] = useState([]);
 
-  const [recipesbyname, setRecipesbyname] = useState([]);
+  //const [recipesbyname, setRecipesbyname] = useState([]);
  
   const getRecipes = () => {
-    //fetch(`https://api.github.com/search/repositories?q=${keyword}`)
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${keyword}`)
-    //fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${keyword}`)
-    .then(response => response.json())
-    .then(responseJson => setRecipes(responseJson.meals))
+    .then(response => {
+      console.log('response status: ', response.status, response.statusText);
+      return response.json()
+    })    
+    .then(responseJson => {
+      console.log(responseJson)
+      setRecipes(responseJson.meals)
+    })
     .catch(error => { 
         Alert.alert('Error', error); 
     });    
