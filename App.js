@@ -36,6 +36,13 @@ export default function App() {
     );
   };
 
+  const emptyList = () => {
+
+    return (
+      <Text>No recipes found</Text>
+    )
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar hidden={true} />
@@ -49,7 +56,8 @@ export default function App() {
           </View>
         }
         data={recipes} 
-        ItemSeparatorComponent={listSeparator} /> 
+        ItemSeparatorComponent={listSeparator} 
+        ListEmptyComponent={emptyList}/> 
       <TextInput 
         style={styles.input} 
         placeholder=' search recipes by ingredient' 
